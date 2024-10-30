@@ -13,13 +13,12 @@ m = 750
 2'''
 
 
-def distance():
-    print('Задание 1')
-    n = int(input())
-    m = int(input())
-    print((m-1)//n+1)
-
-# distance()
+def distance(n,m):
+    return (m - 1) // n + 1
+'''
+n = int(input())
+m = int(input())
+print(f'Задание 1: {distance(n,m)}')'''
 
 
 '''2. В некоторой школе решили набрать три новых математических класса и оборудовать кабинеты для них новыми партами.  
@@ -40,17 +39,17 @@ def distance():
 
 
 def kolichestvo_part(a):
-    return (a-1)//2+1
+    return (a + 1) // 2
 
 
-def school():
-    print('Задание 2')
-    a = int(input())
-    b = int(input())
-    c = int(input())
-    print(kolichestvo_part(a)+kolichestvo_part(b)+kolichestvo_part(c))
+def school(*args):
+    return sum(kolichestvo_part(val) for val in args)
 
-# school()
+'''
+a = int(input())
+b = int(input())
+c = int(input())
+print(f'Задание 2: {school(a,b,c)}')'''
 
 
 '''3. Требуется вывести все целые степени двойки (т.е. числа вида 2k), не превосходящие числа N.  
@@ -61,8 +60,8 @@ def dvoiki():
     print('Задание 3')
     N = float(input())
     k = 0
-    while (2**k) < N:
-        print(k)
+    while (2 ** k) < N:
+        print(2 ** k)
         k += 1
 
 # dvoiki()
@@ -79,12 +78,12 @@ Output:  [4, 5, 1, 2, 3]'''
 
 def list_4():
     print('Задание 4')
-    list_1 = list(map(int, input().split(',')))
+    list_1 = [*map(int, input().split(','))]
     k = int(input())
-    list_1 = list_1[k:]+list_1[:k]
+    list_1 = list_1[k:] + list_1[:k]
     print(list_1)
 
-# list_s()
+# list_4()
 
 
 '''5. Дан массив, состоящий из целых чисел.  
@@ -100,8 +99,8 @@ def list_5():
     print('Задание 5')
     list_1 = list(map(int, input().split(',')))
     count = 0
-    for i in range(len(list_1)-1):
-        if list_1[i] < list_1[i+1]:
+    for i in range(len(list_1) - 1):
+        if list_1[i] < list_1[i + 1]:
             count += 1
     print(count)
 
@@ -115,7 +114,7 @@ def recursiya(a, b):
     if b == 0:
         return 1
     else:
-        return a*recursiya(a, b-1)
+        return a * recursiya(a, b-1)
 
 
 def recursiya_zadanie():
@@ -135,26 +134,20 @@ Input: 5
 Output: yes'''
 
 
-def simple_number(a):
+def prime(a):
     if a != 2 and a % 2 == 0 or a != 3 and a % 3 == 0 or a != 5 and a % 5 == 0 or a != 7 and a % 7 == 0:
         return False
     else:
-        count = 0
-        for i in range(1, a-1):
+        for i in range(2, int(a ** (0.5)) + 1):
             if a % i == 0:
-                count += 1
-            if count > 1:
-                break
-        if count > 1:
-            return False
-        else:
-            return True
+                return False
+        return True
 
 
 def zadanie_7():
     print('Задание 7')
     a = int(input())
-    if simple_number(a):
+    if prime(a):
         print('Yes')
     else:
         print('No')
@@ -185,7 +178,7 @@ def zadanie_8():
     count = 0
     print(zadanie_8_rec(count, int(a), str(b)))
 
-# zadanie_8()
+zadanie_8()
 
 
 '''9. Заполните массив элементами арифметической прогрессии.  
